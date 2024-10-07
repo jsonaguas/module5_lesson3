@@ -9,7 +9,7 @@ conn = connect_database()
 if conn is not None:
     try:
         cursor = conn.cursor()
-        between_ages(30, 40)
+        between_ages(25, 30)
         rows = cursor.fetchall()
         for row in rows:
             print(row)
