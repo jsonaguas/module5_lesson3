@@ -10,10 +10,10 @@ conn = connect_database()
 if conn is not None:
     try:
         cursor = conn.cursor()
-        add_members(8, 'Hephaestus', 60)
+        add_members(9, 'Icarus', 40)
         conn.commit()
         print('New member(s) added')
-        view_members()
+        view_members(cursor)
 
     except Error as e:
         if e.errno == 1062:  # Error code for duplicate entry

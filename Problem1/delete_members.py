@@ -9,7 +9,7 @@ conn = connect_database()
 if conn is not None:
     try:
         cursor = conn.cursor()
-        member_id = 7
+        member_id = 9
         check_query = 'SELECT id FROM Members WHERE id = %s'
         cursor.execute(check_query, (member_id,))
         member = cursor.fetchone()
@@ -19,7 +19,7 @@ if conn is not None:
             exit()
         
         if member:
-            delete_members(7)
+            delete_members(9)
             conn.commit()
             print('Member deleted')
     except Error as e:

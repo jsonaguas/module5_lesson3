@@ -1,14 +1,23 @@
 from main import connect_database
 from mysql.connector import Error
-def view_members():
+
+def view_members(cursor):
     conn = connect_database()
     if conn is not None:
+        print('Members:')
         try:
             cursor = conn.cursor()
-            cursor.execute('SELECT * FROM members')
+            query = 'SELECT * FROM Members'
+            cursor.execute(query)
             rows = cursor.fetchall()
-            for row in rows:
-                print(row) 
+            if rows:
+                for row in rows:
+                    print(row) 
+        except Error as e:
+            print(f"Error: {e}")
         finally:
-            conn.close()
-            cursor.close()
+            if conn and conn.is_connected():
+                conn.close()
+                cursor.close()
+    return cursor
+
